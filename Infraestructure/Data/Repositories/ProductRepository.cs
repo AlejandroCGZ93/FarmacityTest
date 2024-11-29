@@ -76,17 +76,23 @@ namespace Infraestructure.Data.Repositories
         public async Task DeleteAsync(int id)
         {
             var context = _context as Context;
-            var product = await context.Products.FirstOrDefaultAsync(p => p.Id == id && p.IsActive);
+
+            // Buscar el producto por ID
+            var product = await context.Products.FirstOrDefaultAsync(p => p.Id == id);
             if (product != null)
             {
-                // Marcar el producto como desactivado (borrado lógico)
-                product.IsActive = false;
-                product.Barcode.IsActive = false;
-                product.DateUpdate = DateTime.Now;  // Actualizar la fecha de modificación
-                context.Products.Update(product);
-                await context.SaveChangesAsync();
+                // Eliminar el producto junto con su código de barras (si existe)
+                if (product.Barcode != null)
+                {
+                    context.Barcodes.Remove(product.Barcode);  // Eliminar código de barras
+                }
+
+                context.Products.Remove(product);  // Eliminar producto
+                await context.SaveChangesAsync();  // Guardar los cambios en la base de datos
             }
         }
+
+
 
     }
 }
