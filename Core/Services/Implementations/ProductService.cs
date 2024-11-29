@@ -58,13 +58,14 @@ namespace Core.Services.Implementations
         public async Task<ProductDto> CreateOrUpdateProductAsync(ProductDto productDto)
         {
             Product product;
-        
+
             if (productDto.Price < 0)
             {
                 throw new ArgumentException("Price cannot be negative");
             }
 
-            if (productDto.Id == 0 && productDto.Barcode?.Id == 0)
+            // Si el ID es 0, significa que es un producto nuevo, lo creamos
+            if (productDto.Id == 0)
             {
                 product = CreateProductFromDto(productDto);
                 var createdProduct = await _unitOfWork.Product.CreateAsync(product);
@@ -72,14 +73,22 @@ namespace Core.Services.Implementations
             }
             else
             {
+                // Si el ID es mayor que 0, buscamos el producto por ID
                 var existingProduct = await _unitOfWork.Product.GetByIdAsync(productDto.Id);
-                if (existingProduct == null) return null;
 
+                if (existingProduct == null)
+                {
+                    // Si no existe el producto, lanzamos una excepción o respondemos con un error
+                    throw new BusinessNotFoundException($"Producto con ID {productDto.Id} no encontrado");
+                }
+
+                // Si el producto existe, lo actualizamos
                 UpdateProductFromDto(existingProduct, productDto);
                 await _unitOfWork.Product.UpdateAsync(existingProduct);
                 return MapProductToDto(existingProduct);
             }
         }
+
 
         public async Task<ProductDto> DeleteAsync(int id)
         {
