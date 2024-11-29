@@ -14,10 +14,12 @@ Hola, les dejo a continuación las instrucciones relacionadas al desafío plante
 
 2. **Preparación para Migraciones**
   - Seleccione el compilador en HTTPS para proceder a generar las migraciones
-    ![image](https://github.com/user-attachments/assets/344e62e2-0f0f-4126-b4af-96ede1e6e824)
+  ![image](https://github.com/user-attachments/assets/41e1cb54-36a5-45a6-9075-e35bbd44e5f7)
+
 
   - En el administrador de paquetes, seleccione el proyecto Infraestructure (capa que gestiona el acceso a los datos)
-  ![image](https://github.com/user-attachments/assets/ef64c8a6-d05b-4abe-b510-acbf9b7748ad)
+   ![image](https://github.com/user-attachments/assets/04705b2a-1cc5-4ca2-b92c-fe4b6f72fbff)
+
 
 3. **Generación de Migraciones**
   - Ejecute los scripts `add-migration` y `update-migration` para generar las migraciones correspondientes
@@ -25,9 +27,11 @@ Hola, les dejo a continuación las instrucciones relacionadas al desafío plante
 
 4. **Ejecución del Proyecto**
   - Haga clic en HTTPS
-     ![image](https://github.com/user-attachments/assets/344e62e2-0f0f-4126-b4af-96ede1e6e824)
+  ![image](https://github.com/user-attachments/assets/1434abc7-d2a2-4c75-aa6e-15da4eb99676)
+
   - Aparecerá el navegador donde podrá visualizar Swagger y ejecutar las pruebas propuestas en el desafío
-    ![image](https://github.com/user-attachments/assets/52eaaf1c-db51-4e37-899c-eb728be87141)
+  ![image](https://github.com/user-attachments/assets/d06c7f1e-5456-44ae-86ba-3a3ce0ab4335)
+
 
 
 ### Endpoints Disponibles
