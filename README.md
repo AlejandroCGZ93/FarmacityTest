@@ -49,11 +49,10 @@ Se encontrarán con 5 endpoints:
   - **Importante**: Al crear, asegure que el ID del producto y el ID del código de barras sea 0
 
 4. **Delete/Id**
-  - Realizará un borrado lógico
-  - Pasará los productos y su código de barra a `IsActive = false`
+ - Borrado fìsico del producto
 
 5. **Active**
-  - Traerá los productos existentes activos (no borrados con Delete)
+  - Traerá los productos existentes activos
 
 ### Consideraciones de Diseño
 
